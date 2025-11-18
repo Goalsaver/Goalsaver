@@ -81,6 +81,27 @@ npm start
 
 ## 🐳 Docker Deployment
 
+### Using Docker Compose (Recommended)
+
+The easiest way to run the entire stack with PostgreSQL:
+
+```bash
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+```
+
+This will start:
+- PostgreSQL database on port 5432
+- Backend API on port 3000
+
+### Using Docker Directly
+
 Build and run using Docker:
 
 ```bash
