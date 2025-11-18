@@ -9,6 +9,7 @@ import { useNotifications } from '@/hooks/useNotifications';
 import { ROUTES, APP_NAME } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/Badge';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ export function Navbar() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-40">
+    <nav className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-40 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo and Nav Links */}
@@ -46,8 +47,8 @@ export function Navbar() {
                   className={cn(
                     'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors',
                     isActive(link.href)
-                      ? 'border-blue-500 text-gray-900'
-                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                      ? 'border-blue-500 text-gray-900 dark:text-white'
+                      : 'border-transparent text-gray-500 dark:text-gray-400 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-300'
                   )}
                 >
                   {link.label}
@@ -65,10 +66,13 @@ export function Navbar() {
           <div className="flex items-center">
             {isAuthenticated ? (
               <>
+                {/* Theme Toggle */}
+                <ThemeToggle />
+
                 {/* Notifications */}
                 <Link
                   href={ROUTES.NOTIFICATIONS}
-                  className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                  className="relative p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
                 >
                   <Bell className="w-6 h-6" />
                   {unreadCount > 0 && (
@@ -82,7 +86,7 @@ export function Navbar() {
                 <div className="relative ml-3">
                   <button
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors"
+                    className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                   >
                     <User className="w-6 h-6" />
                     <span className="hidden md:block text-sm font-medium">
@@ -97,10 +101,10 @@ export function Navbar() {
                         className="fixed inset-0 z-40"
                         onClick={() => setUserMenuOpen(false)}
                       />
-                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
+                      <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-1 z-50 border border-gray-200 dark:border-gray-700">
                         <Link
                           href={ROUTES.PROFILE}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                           onClick={() => setUserMenuOpen(false)}
                         >
                           Profile
@@ -110,7 +114,7 @@ export function Navbar() {
                             setUserMenuOpen(false);
                             logout();
                           }}
-                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
                         >
                           <LogOut className="w-4 h-4 mr-2" />
                           Logout
@@ -122,9 +126,12 @@ export function Navbar() {
               </>
             ) : (
               <div className="hidden md:flex items-center space-x-4">
+                {/* Theme Toggle for non-authenticated users */}
+                <ThemeToggle />
+                
                 <Link
                   href={ROUTES.LOGIN}
-                  className="text-gray-700 hover:text-gray-900 font-medium"
+                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium"
                 >
                   Login
                 </Link>
@@ -140,7 +147,7 @@ export function Navbar() {
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden ml-4 p-2 text-gray-600 hover:text-gray-900"
+              className="md:hidden ml-4 p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -150,7 +157,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200">
+        <div className="md:hidden border-t border-gray-200 dark:border-gray-700">
           <div className="pt-2 pb-3 space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -159,8 +166,8 @@ export function Navbar() {
                 className={cn(
                   'block pl-3 pr-4 py-2 border-l-4 text-base font-medium',
                   isActive(link.href)
-                    ? 'bg-blue-50 border-blue-500 text-blue-700'
-                    : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800'
+                    ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-500 text-blue-700 dark:text-blue-400'
+                    : 'border-transparent text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 hover:text-gray-800 dark:hover:text-gray-300'
                 )}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -171,14 +178,14 @@ export function Navbar() {
               <>
                 <Link
                   href={ROUTES.LOGIN}
-                  className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50"
+                  className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Login
                 </Link>
                 <Link
                   href={ROUTES.REGISTER}
-                  className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50"
+                  className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Sign Up
