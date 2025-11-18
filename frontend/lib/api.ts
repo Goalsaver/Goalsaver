@@ -55,18 +55,18 @@ api.interceptors.response.use(
 // Auth API
 export const authApi = {
   login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
-    const response = await api.post<AuthResponse>('/auth/login', credentials);
-    return response.data;
+    const response = await api.post<{ success: boolean; data: AuthResponse }>('/auth/login', credentials);
+    return response.data.data;
   },
 
   register: async (data: RegisterData): Promise<AuthResponse> => {
-    const response = await api.post<AuthResponse>('/auth/register', data);
-    return response.data;
+    const response = await api.post<{ success: boolean; data: AuthResponse }>('/auth/register', data);
+    return response.data.data;
   },
 
   me: async (): Promise<User> => {
-    const response = await api.get<User>('/auth/me');
-    return response.data;
+    const response = await api.get<{ success: boolean; data: User }>('/auth/me');
+    return response.data.data;
   },
 
   logout: async (): Promise<void> => {
@@ -79,23 +79,23 @@ export const authApi = {
 // Groups API
 export const groupsApi = {
   getAll: async (): Promise<Group[]> => {
-    const response = await api.get<Group[]>('/groups');
-    return response.data;
+    const response = await api.get<{ success: boolean; data: Group[] }>('/groups');
+    return response.data.data;
   },
 
   getById: async (id: string): Promise<Group> => {
-    const response = await api.get<Group>(`/groups/${id}`);
-    return response.data;
+    const response = await api.get<{ success: boolean; data: Group }>(`/groups/${id}`);
+    return response.data.data;
   },
 
   create: async (data: CreateGroupData): Promise<Group> => {
-    const response = await api.post<Group>('/groups', data);
-    return response.data;
+    const response = await api.post<{ success: boolean; data: Group }>('/groups', data);
+    return response.data.data;
   },
 
   update: async (id: string, data: Partial<CreateGroupData>): Promise<Group> => {
-    const response = await api.put<Group>(`/groups/${id}`, data);
-    return response.data;
+    const response = await api.put<{ success: boolean; data: Group }>(`/groups/${id}`, data);
+    return response.data.data;
   },
 
   delete: async (id: string): Promise<void> => {
@@ -114,26 +114,26 @@ export const groupsApi = {
 // Contributions API
 export const contributionsApi = {
   getAll: async (): Promise<Contribution[]> => {
-    const response = await api.get<Contribution[]>('/contributions');
-    return response.data;
+    const response = await api.get<{ success: boolean; data: Contribution[] }>('/contributions');
+    return response.data.data;
   },
 
   getByGroup: async (groupId: string): Promise<Contribution[]> => {
-    const response = await api.get<Contribution[]>(`/contributions/group/${groupId}`);
-    return response.data;
+    const response = await api.get<{ success: boolean; data: Contribution[] }>(`/contributions/group/${groupId}`);
+    return response.data.data;
   },
 
   create: async (groupId: string, data: ContributionData): Promise<Contribution> => {
-    const response = await api.post<Contribution>(`/contributions/group/${groupId}`, data);
-    return response.data;
+    const response = await api.post<{ success: boolean; data: Contribution }>(`/contributions/group/${groupId}`, data);
+    return response.data.data;
   },
 };
 
 // Notifications API
 export const notificationsApi = {
   getAll: async (): Promise<Notification[]> => {
-    const response = await api.get<Notification[]>('/notifications');
-    return response.data;
+    const response = await api.get<{ success: boolean; data: Notification[] }>('/notifications');
+    return response.data.data;
   },
 
   markAsRead: async (id: string): Promise<void> => {
@@ -148,13 +148,13 @@ export const notificationsApi = {
 // Dashboard API
 export const dashboardApi = {
   getStats: async (): Promise<DashboardStats> => {
-    const response = await api.get<DashboardStats>('/dashboard/stats');
-    return response.data;
+    const response = await api.get<{ success: boolean; data: DashboardStats }>('/dashboard/stats');
+    return response.data.data;
   },
 
   getActivities: async (): Promise<Activity[]> => {
-    const response = await api.get<Activity[]>('/dashboard/activities');
-    return response.data;
+    const response = await api.get<{ success: boolean; data: Activity[] }>('/dashboard/activities');
+    return response.data.data;
   },
 };
 
