@@ -14,7 +14,7 @@ import toast from 'react-hot-toast';
 
 const contributionSchema = z.object({
   amount: z
-    .number({ invalid_type_error: 'Amount must be a number' })
+    .number()
     .positive('Amount must be positive')
     .min(1, 'Minimum contribution is $1'),
   note: z.string().optional(),

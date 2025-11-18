@@ -47,7 +47,6 @@ export function GroupProvider({ children }: { children: ReactNode }) {
     try {
       const data = await groupsApi.getById(id);
       setSelectedGroup(data);
-      return data;
     } catch (error) {
       console.error('Failed to fetch group:', error);
       throw error;

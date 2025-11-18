@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "docker:build": "docker build -t goalsaver-frontend .",
+    "docker:run": "docker run -p 3001:3000 goalsaver-frontend"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
