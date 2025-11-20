@@ -85,9 +85,9 @@ export interface EmailOptions {
 // Dashboard types
 export interface DashboardStats {
   totalGroups: number;
-  activeContributions: number;
-  totalSaved: number;
-  upcomingDeadlines: number;
+  totalContributed: number;
+  activeGoals: number;
+  completedGoals: number;
 }
 
 export interface Activity {

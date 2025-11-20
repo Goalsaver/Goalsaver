@@ -12,44 +12,42 @@ export class DashboardController {
         where: { userId },
       });
 
-      // Get active contributions count
-      const activeContributions = await prisma.contribution.count({
-        where: { userId },
-      });
-
-      // Get total amount saved
+      // Get total amount contributed
       const contributions = await prisma.contribution.findMany({
         where: { userId },
         select: { amount: true },
       });
       
-      const totalSaved = contributions.reduce(
+      const totalContributed = contributions.reduce(
         (sum, contribution) => sum + Number(contribution.amount),
         0
       );
 
-      // Get groups with upcoming deadlines (next 7 days)
-      const sevenDaysFromNow = new Date();
-      sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
-
-      const upcomingDeadlines = await prisma.group.count({
+      // Get active goals (groups with SAVING status)
+      const activeGoals = await prisma.group.count({
         where: {
           members: {
             some: { userId },
-          },
-          deadline: {
-            gte: new Date(),
-            lte: sevenDaysFromNow,
           },
           status: 'SAVING',
         },
       });
 
+      // Get completed goals (groups with COMPLETED status)
+      const completedGoals = await prisma.group.count({
+        where: {
+          members: {
+            some: { userId },
+          },
+          status: 'COMPLETED',
+        },
+      });
+
       const stats: DashboardStats = {
         totalGroups,
-        activeContributions,
-        totalSaved,
-        upcomingDeadlines,
+        totalContributed,
+        activeGoals,
+        completedGoals,
       };
 
       res.status(200).json({
