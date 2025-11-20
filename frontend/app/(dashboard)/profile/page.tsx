@@ -108,7 +108,7 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      <h1 className="text-3xl font-bold text-gray-900">Profile Settings</h1>
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Profile Settings</h1>
 
       {error && <Alert variant="error">{error}</Alert>}
 
@@ -116,7 +116,7 @@ export default function ProfilePage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-gray-900">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
               Profile Information
             </h2>
             <Button
@@ -131,14 +131,14 @@ export default function ProfilePage() {
         <CardBody>
           {/* Avatar */}
           <div className="flex items-center mb-6">
-            <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-semibold">
+            <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-semibold shadow-lg">
               {getInitials(user.firstName, user.lastName)}
             </div>
             <div className="ml-6">
-              <p className="text-lg font-semibold text-gray-900">
+              <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                 {user.firstName} {user.lastName}
               </p>
-              <p className="text-sm text-gray-600">{user.email}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{user.email}</p>
             </div>
           </div>
 
@@ -174,19 +174,19 @@ export default function ProfilePage() {
             </form>
           ) : (
             <div className="space-y-4">
-              <div className="flex items-center text-gray-700">
-                <User className="w-5 h-5 mr-3 text-gray-400" />
+              <div className="flex items-center text-gray-700 dark:text-gray-300">
+                <User className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500" />
                 <span>
                   {user.firstName} {user.lastName}
                 </span>
               </div>
-              <div className="flex items-center text-gray-700">
-                <Mail className="w-5 h-5 mr-3 text-gray-400" />
+              <div className="flex items-center text-gray-700 dark:text-gray-300">
+                <Mail className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500" />
                 <span>{user.email}</span>
               </div>
               {user.phone && (
-                <div className="flex items-center text-gray-700">
-                  <Phone className="w-5 h-5 mr-3 text-gray-400" />
+                <div className="flex items-center text-gray-700 dark:text-gray-300">
+                  <Phone className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500" />
                   <span>{user.phone}</span>
                 </div>
               )}
@@ -198,7 +198,7 @@ export default function ProfilePage() {
       {/* Change Password */}
       <Card>
         <CardHeader>
-          <h2 className="text-xl font-semibold text-gray-900">Change Password</h2>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Change Password</h2>
         </CardHeader>
         <CardBody>
           <form onSubmit={handlePasswordSubmit(onPasswordSubmit)} className="space-y-4">
@@ -231,7 +231,7 @@ export default function ProfilePage() {
       {/* Notification Settings */}
       <Card>
         <CardHeader>
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
             Notification Settings
           </h2>
         </CardHeader>
@@ -239,14 +239,14 @@ export default function ProfilePage() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-gray-900">Email Notifications</p>
-                <p className="text-sm text-gray-600">
+                <p className="font-medium text-gray-900 dark:text-gray-100">Email Notifications</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Receive email updates about your groups
                 </p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" className="sr-only peer" defaultChecked />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
               </label>
             </div>
           </div>
@@ -256,13 +256,13 @@ export default function ProfilePage() {
       {/* Danger Zone */}
       <Card>
         <CardHeader>
-          <h2 className="text-xl font-semibold text-red-600">Danger Zone</h2>
+          <h2 className="text-xl font-semibold text-red-600 dark:text-red-400">Danger Zone</h2>
         </CardHeader>
         <CardBody>
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-medium text-gray-900">Delete Account</p>
-              <p className="text-sm text-gray-600">
+              <p className="font-medium text-gray-900 dark:text-gray-100">Delete Account</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Permanently delete your account and all data
               </p>
             </div>

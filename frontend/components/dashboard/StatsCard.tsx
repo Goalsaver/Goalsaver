@@ -23,24 +23,24 @@ export function StatsCard({ title, value, icon: Icon, color, trend }: StatsCardP
   };
 
   return (
-    <Card>
+    <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
       <CardBody>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
-            <p className="text-3xl font-bold text-gray-900">{value}</p>
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{title}</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{value}</p>
             {trend && (
               <p
                 className={cn(
                   'text-sm mt-1',
-                  trend.isPositive ? 'text-green-600' : 'text-red-600'
+                  trend.isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
                 )}
               >
                 {trend.isPositive ? '↑' : '↓'} {Math.abs(trend.value)}%
               </p>
             )}
           </div>
-          <div className={cn('w-16 h-16 rounded-full flex items-center justify-center', colorClasses[color])}>
+          <div className={cn('w-16 h-16 rounded-full flex items-center justify-center shadow-lg', colorClasses[color])}>
             <Icon className="w-8 h-8 text-white" />
           </div>
         </div>

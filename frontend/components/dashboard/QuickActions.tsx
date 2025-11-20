@@ -9,18 +9,18 @@ export function QuickActions() {
   return (
     <Card>
       <CardHeader>
-        <h3 className="text-lg font-semibold text-gray-900">Quick Actions</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Quick Actions</h3>
       </CardHeader>
       <CardBody>
         <div className="space-y-3">
           <Link href={ROUTES.CREATE_GROUP} className="block">
-            <Button variant="primary" size="lg" className="w-full justify-start">
+            <Button variant="primary" size="lg" className="w-full justify-start shadow-md hover:shadow-lg">
               <Plus className="w-5 h-5 mr-2" />
               Create New Group
             </Button>
           </Link>
           <Link href={ROUTES.GROUPS} className="block">
-            <Button variant="secondary" size="lg" className="w-full justify-start">
+            <Button variant="secondary" size="lg" className="w-full justify-start shadow-sm hover:shadow-md">
               <Search className="w-5 h-5 mr-2" />
               Browse Groups
             </Button>

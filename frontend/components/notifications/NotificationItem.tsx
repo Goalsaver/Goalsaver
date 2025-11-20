@@ -31,8 +31,8 @@ export function NotificationItem({ notification, onClick }: NotificationItemProp
       className={cn(
         'flex items-start space-x-4 p-4 rounded-lg cursor-pointer transition-colors',
         notification.isRead
-          ? 'bg-white hover:bg-gray-50'
-          : 'bg-blue-50 hover:bg-blue-100'
+          ? 'bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'
+          : 'bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30'
       )}
     >
       <div className="flex-shrink-0 mt-1">{getIcon(notification.type)}</div>
@@ -40,13 +40,15 @@ export function NotificationItem({ notification, onClick }: NotificationItemProp
         <p
           className={cn(
             'text-sm font-medium',
-            notification.isRead ? 'text-gray-900' : 'text-blue-900'
+            notification.isRead 
+              ? 'text-gray-900 dark:text-gray-100' 
+              : 'text-blue-900 dark:text-blue-200'
           )}
         >
           {notification.title}
         </p>
-        <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{notification.message}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
           {formatRelativeTime(notification.createdAt)}
         </p>
       </div>
