@@ -56,10 +56,10 @@ export default function DashboardPage() {
     <div className="space-y-8">
       {/* Welcome Message */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
           Welcome back, {user?.firstName}! 👋
         </h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Here&apos;s an overview of your savings progress
         </p>
       </div>

@@ -13,6 +13,9 @@ interface AuthContextType {
   register: (data: RegisterData) => Promise<void>;
   logout: () => Promise<void>;
   isAuthenticated: boolean;
+  showWelcome: boolean;
+  setShowWelcome: (show: boolean) => void;
+  isNewUser: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,6 +23,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [isNewUser, setIsNewUser] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -54,6 +59,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(response.user);
       localStorage.setItem('token', response.token);
       localStorage.setItem('user', JSON.stringify(response.user));
+      setIsNewUser(false);
+      setShowWelcome(true);
       router.push(ROUTES.DASHBOARD);
     } catch (error) {
       console.error('Login failed:', error);
@@ -67,6 +74,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(response.user);
       localStorage.setItem('token', response.token);
       localStorage.setItem('user', JSON.stringify(response.user));
+      setIsNewUser(true);
+      setShowWelcome(true);
       router.push(ROUTES.DASHBOARD);
     } catch (error) {
       console.error('Registration failed:', error);
@@ -96,6 +105,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         register,
         logout,
         isAuthenticated: !!user,
+        showWelcome,
+        setShowWelcome,
+        isNewUser,
       }}
     >
       {children}
