@@ -49,11 +49,19 @@ export default function CreateGroupPage() {
     setError(null);
 
     try {
-      const newGroup = await createGroup(data);
+      // Ensure targetAmount is a proper number
+      const groupData = {
+        ...data,
+        targetAmount: parseFloat(String(data.targetAmount)),
+      };
+      
+      console.log('Creating group with data:', groupData);
+      const newGroup = await createGroup(groupData);
       toast.success('Group created successfully! 🎉');
       router.push(ROUTES.GROUP_DETAIL(newGroup.id));
     } catch (err: any) {
-      const message = err.response?.data?.message || 'Failed to create group';
+      console.error('Group creation error:', err);
+      const message = err.response?.data?.message || err.message || 'Failed to create group';
       setError(message);
       toast.error(message);
     }

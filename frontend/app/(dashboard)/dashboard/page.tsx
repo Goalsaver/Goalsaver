@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Users, DollarSign, Target, Trophy } from 'lucide-react';
+import { Users, Banknote, Target, Trophy } from 'lucide-react';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { ActivityFeed } from '@/components/dashboard/ActivityFeed';
 import { QuickActions } from '@/components/dashboard/QuickActions';
@@ -75,7 +75,7 @@ export default function DashboardPage() {
         <StatsCard
           title="Total Contributed"
           value={formatCurrency(stats?.totalContributed || 0)}
-          icon={DollarSign}
+          icon={Banknote}
           color="green"
         />
         <StatsCard
