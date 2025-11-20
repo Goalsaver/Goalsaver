@@ -81,3 +81,20 @@ export interface EmailOptions {
   text: string;
   html?: string;
 }
+
+// Dashboard types
+export interface DashboardStats {
+  totalGroups: number;
+  totalContributed: number;
+  activeGoals: number;
+  completedGoals: number;
+}
+
+export interface Activity {
+  id: string;
+  type: 'contribution' | 'group_joined' | 'target_reached' | 'purchase_completed';
+  message: string;
+  timestamp: Date;
+  groupId?: string;
+  groupName?: string;
+}
