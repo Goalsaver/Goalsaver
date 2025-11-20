@@ -18,7 +18,7 @@ export function GroupCard({ group }: GroupCardProps) {
 
   return (
     <Link href={ROUTES.GROUP_DETAIL(group.id)}>
-      <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+      <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full">
         {/* Image */}
         <div className="h-48 bg-gradient-to-r from-blue-500 to-purple-600 relative">
           {group.imageUrl ? (
@@ -41,17 +41,17 @@ export function GroupCard({ group }: GroupCardProps) {
 
         <CardBody>
           {/* Title */}
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
             {group.name}
           </h3>
 
           {/* Description */}
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
             {group.description}
           </p>
 
           {/* Target Item */}
-          <div className="flex items-center text-sm text-gray-700 mb-4">
+          <div className="flex items-center text-sm text-gray-700 dark:text-gray-300 mb-4">
             <Target className="w-4 h-4 mr-2 text-blue-500" />
             <span className="font-medium">{group.targetItem}</span>
           </div>
@@ -59,10 +59,10 @@ export function GroupCard({ group }: GroupCardProps) {
           {/* Progress */}
           <div className="mb-4">
             <div className="flex justify-between text-sm mb-2">
-              <span className="text-gray-600">
+              <span className="text-gray-600 dark:text-gray-400">
                 {formatCurrency(group.currentAmount)}
               </span>
-              <span className="font-semibold text-gray-900">
+              <span className="font-semibold text-gray-900 dark:text-gray-100">
                 {formatCurrency(group.targetAmount)}
               </span>
             </div>
@@ -75,7 +75,7 @@ export function GroupCard({ group }: GroupCardProps) {
           </div>
 
           {/* Meta Info */}
-          <div className="flex items-center justify-between text-sm text-gray-500">
+          <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center">
               <Users className="w-4 h-4 mr-1" />
               <span>{group.members.length} members</span>
